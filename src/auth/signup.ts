@@ -33,8 +33,7 @@ router.post("/",
       // Create account
       await User.create({
         email: req.body.email,
-        hash: hash,
-        salt: salt
+        hash: hash
       })
 
       return res.json({ message: "Account created succesfully." }).status(201)
