@@ -19,7 +19,7 @@ router.post("/",
     try {
       const { email, password } = req.body
 
-      const query = await User.findOne({ email: email })
+      const query = await User.findOne({ email })
 
       // If that query exists, email not available
       if (query) {
@@ -32,8 +32,7 @@ router.post("/",
 
       // Create account
       await User.create({
-        email: req.body.email,
-        hash: hash
+        email, hash
       })
 
       return res.json({ message: "Account created succesfully." }).status(201)

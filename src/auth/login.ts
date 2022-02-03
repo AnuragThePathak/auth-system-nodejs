@@ -9,12 +9,11 @@ router.post('/',
     try {
       const { email, password } = req.body
 
-      let query
-      if (email && password) {
-        query = await User.findOne({ email: email })
-      } else {
+      if (!(email && password)) {
         return res.status(401).json({ message: "Invalid credentials." })
       }
+
+      const query = await User.findOne({ email })
 
       // If email doesn't exist.
       if (!query) {
